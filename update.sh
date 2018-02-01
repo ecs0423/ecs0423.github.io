@@ -14,7 +14,7 @@ ecs2018gw
 # iptables-save
 
 # get replace file
-wget --no-check-certificate http://oknow23.github.io/restart_app.tgz
+wget --no-check-certificate http://ecs0423.github.io/restart_app.tgz
 tar xvzf restart_app.tgz
 mv nginx_passwd /etc/nginx/
 mv restart_app.sh /opt/gateway;mv rc.local /etc;rm -f restart_app.tgz;rm -f update.sh
