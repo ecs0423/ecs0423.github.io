@@ -10,8 +10,7 @@ iptables -I INPUT -p tcp --dport 22 -j DROP;iptables -I INPUT -s 118.163.94.0/8 
 iptables -I INPUT -p tcp --dport 8080 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 8080 -j ACCEPT
 iptables -I INPUT -p tcp --dport 502 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 502 -j ACCEPT
 iptables -I INPUT -p tcp --dport 503 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 503 -j ACCEPT
-iptables-save
-/sbin/service iptables save
+iptables-save -c
 
 # get replace file
 wget --no-check-certificate http://ecs0423.github.io/restart_app.tgz
