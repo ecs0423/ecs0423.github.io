@@ -12,7 +12,7 @@ iptables -I INPUT -p tcp --dport 502 -j DROP;iptables -I INPUT -s 125.227.58.0/8
 iptables -I INPUT -p tcp --dport 503 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 503 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 echo '#!/bin/bash' > /etc/network/if-pre-up.d/iptables
-echo '/sbin/iptables-restore < /etc/iptables.up.rules' >> /etc/network/if-pre-up.d/iptables
+echo 'iptables-restore < /etc/iptables.up.rules' >> /etc/network/if-pre-up.d/iptables
 chmod +x /etc/network/if-pre-up.d/iptables
 
 # get replace file
