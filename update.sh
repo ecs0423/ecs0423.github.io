@@ -5,11 +5,11 @@ ecs2018gw
 " | passwd
 
 # setup firewall
-iptables -I INPUT -p tcp --dport 443 -j DROP;iptables -I INPUT -s 118.163.94.0/8 -p tcp --dport 443 -j ACCEPT
-iptables -I INPUT -p tcp --dport 22 -j DROP;iptables -I INPUT -s 118.163.94.0/8 -p tcp --dport 22 -j ACCEPT
-iptables -I INPUT -p tcp --dport 8080 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 8080 -j ACCEPT
-iptables -I INPUT -p tcp --dport 502 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 502 -j ACCEPT
-iptables -I INPUT -p tcp --dport 503 -j DROP;iptables -I INPUT -s 125.227.58.0/8 -p tcp --dport 503 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j DROP;iptables -I INPUT -s 118.163.94.0/24 -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -p tcp --dport 22 -j DROP;iptables -I INPUT -s 118.163.94.0/24 -p tcp --dport 22 -j ACCEPT
+iptables -I INPUT -p tcp --dport 8080 -j DROP;iptables -I INPUT -s 125.227.58.0/24 -p tcp --dport 8080 -j ACCEPT
+iptables -I INPUT -p tcp --dport 502 -j DROP;iptables -I INPUT -s 125.227.58.0/24 -p tcp --dport 502 -j ACCEPT
+iptables -I INPUT -p tcp --dport 503 -j DROP;iptables -I INPUT -s 125.227.58.0/24 -p tcp --dport 503 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 echo '#!/bin/bash' > /etc/network/if-pre-up.d/iptables
 echo 'iptables-restore < /etc/iptables.up.rules' >> /etc/network/if-pre-up.d/iptables
