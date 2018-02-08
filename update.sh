@@ -18,7 +18,7 @@ iptables -I INPUT -p tcp --dport 502 -j DROP;iptables -I INPUT -s 125.227.58.74 
 iptables -I INPUT -p tcp --dport 503 -j DROP;iptables -I INPUT -s 125.227.58.74 -p tcp --dport 503 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 sed 's/exit 0//g' -i /etc/rc.local
-echo 'sleep 3' >> /etc/rc.local
+echo 'sleep 5' >> /etc/rc.local
 echo 'iptables-restore < /etc/iptables.up.rules' >> /etc/rc.local
 echo 'exit 0' >> /etc/rc.local
 
