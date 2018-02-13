@@ -6,11 +6,16 @@ RUN apt-get update
 RUN apt-get install vim wget curl openssh-server -y
 
 # cross compiler tool:
-RUN apt-get install libcrypto++-dev patchutils zip unzip -y
-RUN apt-get install g++-multilib libssl-dev zlib1g-dev screen
+RUN apt-get install patchutils zip unzip -y
 RUN apt-get install gawk git-core diffstat texinfo gcc-multilib \
      build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
-     xz-utils debianutils iputils-ping libsdl1.2-dev xterm
+     xz-utils debianutils iputils-ping libsdl1.2-dev xterm -y
+
+#Fix Error: No valid terminal found, unable to open devshell
+RUN apt-get install screen -y
+
+# for node js 6.1 fix:
+RUN apt-get install g++-multilib libssl-dev:i386 libcrypto++-dev:i386 zlib1g-dev:i386 -y
 
 # fix Please use a locale setting which supports utf-8.
 RUN apt-get install locales
