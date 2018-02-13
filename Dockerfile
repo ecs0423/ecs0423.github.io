@@ -3,7 +3,14 @@ FROM ubuntu:14.04
 RUN apt-get update
 
 # install 
-RUN apt-get install vim wget openssh-server -y
+RUN apt-get install vim wget curl openssh-server -y
+
+# cross compiler tool:
+RUN apt-get install libcrypto++-dev patchutils zip unzip -y
+RUN apt-get install g++-multilib libssl-dev:i386 libcrypto++-dev:i386 zlib1g-dev:i386 screen
+RUN apt-get install gawk git-core diffstat texinfo gcc-multilib \
+     build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
+     xz-utils debianutils iputils-ping libsdl1.2-dev xterm
 
 # fix Please use a locale setting which supports utf-8.
 RUN apt-get install locales
