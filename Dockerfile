@@ -15,7 +15,7 @@ RUN apt-get install gawk git-core diffstat texinfo gcc-multilib \
 RUN apt-get install screen -y
 
 # for node js 6.1 fix:
-RUN apt-get install g++-multilib libssl-dev:i386 libcrypto++-dev:i386 zlib1g-dev:i386 -y
+RUN apt-get install g++-multilib libssl-dev libcrypto++-dev zlib1g-dev -y
 
 # fix Please use a locale setting which supports utf-8.
 RUN apt-get install locales
