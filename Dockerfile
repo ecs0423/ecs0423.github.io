@@ -9,7 +9,6 @@ RUN apt-get install vim wget openssh-server -y
 RUN apt-get install locales
 RUN dpkg-reconfigure locales 
 RUN locale-gen en_US.UTF-8
-RUN Generation complete.
 RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 RUN export LANG=en_US.UTF-8
 
