@@ -16,7 +16,7 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:1qaz' | chpasswd
 
 # set Root login
-RUN sed -i "s/PermitRootLogin no//g" /etc/ssh/sshd_config
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
