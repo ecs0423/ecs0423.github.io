@@ -25,7 +25,7 @@ RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 RUN export LANG=en_US.UTF-8
 
 RUN mkdir /var/run/sshd
-RUN echo 'root:1qaz' | chpasswd
+RUN echo 'root:root' | chpasswd
 
 ## create user
 RUN ln -sf /bin/bash /bin/sh
@@ -39,6 +39,7 @@ RUN echo "docker    ALL=(ALL)       ALL" >> /etc/sudoers.d/docker
 RUN sed -i 's/PermitRootLogin prohibit-password//' /etc/ssh/sshd_config
 RUN sed -i 's/PermitRootLogin without-password//' /etc/ssh/sshd_config
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -48,6 +49,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 # Set user.email so crosbymichael's in-container merge commits go smoothly
 RUN git config --global user.email 'docker@example.com'
+RUN git config --global user.name "docker"
 
 # Add an unprivileged user to be used for tests which need it
 # RUN groupadd -r docker
