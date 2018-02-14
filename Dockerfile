@@ -26,6 +26,10 @@ RUN export LANG=en_US.UTF-8
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:1qaz' | chpasswd
+RUN echo 'docker:1qaz' | chpasswd
+
+## setup sudoers
+RUN echo "docker    ALL=(ALL)       ALL" >> /etc/sudoers.d/docker
 
 # set Root login
 RUN sed -i 's/PermitRootLogin prohibit-password//' /etc/ssh/sshd_config
@@ -43,9 +47,9 @@ RUN git config --global user.email 'docker@example.com'
 
 # Add an unprivileged user to be used for tests which need it
 RUN groupadd -r docker
-RUN useradd --create-home --gid docker unprivilegeduser
 
-RUN service ssh start
+RUN /etc/init.d/sshd start
 
 EXPOSE 22
+
 CMD ["/usr/sbin/sshd", "-D"]
