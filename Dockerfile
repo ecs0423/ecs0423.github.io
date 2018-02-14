@@ -26,7 +26,11 @@ RUN export LANG=en_US.UTF-8
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:1qaz' | chpasswd
-RUN echo 'docker:1qaz' | chpasswd
+
+## create user
+RUN useradd docker
+RUN passwd -f -u docker
+RUN mkdir -p /home/docker/.ssh; chown naoya /home/docker/.ssh; chmod 700 /home/docker/.ssh
 
 ## setup sudoers
 RUN echo "docker    ALL=(ALL)       ALL" >> /etc/sudoers.d/docker
