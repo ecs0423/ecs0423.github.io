@@ -29,8 +29,8 @@ RUN echo 'root:1qaz' | chpasswd
 
 ## create user
 RUN ln -sf /bin/bash /bin/sh
-RUN useradd -ms docker
-RUN mkdir -p /home/docker/.ssh; chown naoya /home/docker/.ssh; chmod 700 /home/docker/.ssh
+RUN adduser --disabled-password --gecos "" docker && \
+  echo docker:docker | chpasswd && \
 
 ## setup sudoers
 RUN echo "docker    ALL=(ALL)       ALL" >> /etc/sudoers.d/docker
