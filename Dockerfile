@@ -51,11 +51,5 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN git config --global user.email 'docker@example.com'
 RUN git config --global user.name "docker"
 
-# Add an unprivileged user to be used for tests which need it
-# RUN groupadd -r docker
-
-RUN /etc/init.d/ssh start
-
 EXPOSE 22
-
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd","-D"]
