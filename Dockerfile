@@ -28,8 +28,8 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:1qaz' | chpasswd
 
 ## create user
-RUN useradd docker
-RUN passwd -f -u docker
+RUN ln -sf /bin/bash /bin/sh
+RUN useradd -ms docker
 RUN mkdir -p /home/docker/.ssh; chown naoya /home/docker/.ssh; chmod 700 /home/docker/.ssh
 
 ## setup sudoers
