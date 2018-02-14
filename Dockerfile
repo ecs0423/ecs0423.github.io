@@ -38,6 +38,14 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
+# Set user.email so crosbymichael's in-container merge commits go smoothly
+RUN git config --global user.email 'docker@example.com'
+
+# Add an unprivileged user to be used for tests which need it
+RUN groupadd -r docker
+RUN useradd --create-home --gid docker unprivilegeduser
+
+RUN service ssh start
+
 EXPOSE 22
-# CMD ["/usr/sbin/sshd", "-D"]
-CMD ["service ssh start"]
+CMD ["/usr/sbin/sshd", "-D"]
