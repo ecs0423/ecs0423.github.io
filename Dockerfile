@@ -30,7 +30,7 @@ RUN echo 'root:1qaz' | chpasswd
 ## create user
 RUN ln -sf /bin/bash /bin/sh
 RUN adduser --disabled-password --gecos "" docker && \
-  echo docker:docker | chpasswd && \
+  echo docker:docker | chpasswd
 
 ## setup sudoers
 RUN echo "docker    ALL=(ALL)       ALL" >> /etc/sudoers.d/docker
@@ -50,9 +50,9 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN git config --global user.email 'docker@example.com'
 
 # Add an unprivileged user to be used for tests which need it
-RUN groupadd -r docker
+# RUN groupadd -r docker
 
-RUN /etc/init.d/sshd start
+RUN /etc/init.d/ssh start
 
 EXPOSE 22
 
